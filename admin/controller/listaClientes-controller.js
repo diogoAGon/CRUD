@@ -23,23 +23,28 @@ const criaNovaLinha = (nome, email, id) => {
   // PERCORRE O DOM PARA BUSCAR CORPO
   const tabela = document.querySelector ('[data-tabela]')
 
-tabela.addEventListener('click', (evento) =>{
+tabela.addEventListener('click', async (evento) =>{
 let ehBotaoDeletar = evento.target.className === 'botao-simples botao-simples--excluir'
 if (ehBotaoDeletar){
     const linhaCliente = evento.target.closest('[data-id]')
     let id = linhaCliente.dataset.id
-    clienteService.removeCliente(id)
-    .then ( () => {
+     await clienteService.removeCliente(id)
         linhaCliente.remove()
-    })
+   
 }
 })
 
-  // PEGANDO DADOS DA API E FAZENDO UM LOOP INTERANDO SOB OS DADOS E MOSTRANDO NA TELA
- clienteService.listaClientes()
- .then( data =>  {  
-    data.forEach(elemento => {
-    tabela.appendChild(criaNovaLinha(elemento.nome, elemento.email, elemento.id))
-   
-   
-   })})
+ 
+// PEGANDO DADOS DA API E FAZENDO UM LOOP INTERANDO SOB OS DADOS E MOSTRANDO NA TELA
+const render = async () => {
+    const listaClientes = await clienteService.listaClientes()
+
+   listaClientes.forEach(elemento => {
+   tabela.appendChild(criaNovaLinha(elemento.nome, elemento.email, elemento.id))
+  
+  
+  })
+
+}
+
+render();
