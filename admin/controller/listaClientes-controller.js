@@ -1,7 +1,7 @@
 import { clienteService } from "../service/cliente-service.js"
 
 // CRIA UM TEMPLATE 
-const criaNovaLinha = (nome, email) => {
+const criaNovaLinha = (nome, email, id) => {
     const linhaNovoCliente = document.createElement('tr')
       const conteudo = `
   <td class="td" data-td>${nome}</td>
@@ -15,21 +15,31 @@ const criaNovaLinha = (nome, email) => {
   `
   
   linhaNovoCliente.innerHTML = conteudo
+  linhaNovoCliente.dataset.id = id
   return linhaNovoCliente
-  
   }
   
 
   // PERCORRE O DOM PARA BUSCAR CORPO
   const tabela = document.querySelector ('[data-tabela]')
 
-
+tabela.addEventListener('click', (evento) =>{
+let ehBotaoDeletar = evento.target.className === 'botao-simples botao-simples--excluir'
+if (ehBotaoDeletar){
+    const linhaCliente = evento.target.closest('[data-id]')
+    let id = linhaCliente.dataset.id
+    clienteService.removeCliente(id)
+    .then ( () => {
+        linhaCliente.remove()
+    })
+}
+})
 
   // PEGANDO DADOS DA API E FAZENDO UM LOOP INTERANDO SOB OS DADOS E MOSTRANDO NA TELA
  clienteService.listaClientes()
  .then( data =>  {  
     data.forEach(elemento => {
-    tabela.appendChild(criaNovaLinha(elemento.nome, elemento.email))
+    tabela.appendChild(criaNovaLinha(elemento.nome, elemento.email, elemento.id))
    
    
    })})
