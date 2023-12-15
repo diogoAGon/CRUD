@@ -15,16 +15,18 @@ Projeto desenvolvido após conclusão do curso JS na web: CRUD com JavaScript as
 - Clique com o segundo botão na pasta CRUD e abra o terminal integrado 
 
 **Rode os comandos:**
--     npm install -g json-server
+
+      npm install -g json-server
 
 
--     json-server --watch db.json
+      json-server --watch db.json
 
 - Abra um novo terminal integrado a pasta CRUD
 
 **Rode os comandos**
--     npm install -g browser-sync
+
+    npm install -g browser-sync
 
 
--     browser-sync start --server --file . --host --port 5000 --startPath admin/telas/lista_cliente.html
+    browser-sync start --server --file . --host --port 5000 --startPath admin/telas/lista_cliente.html
 
