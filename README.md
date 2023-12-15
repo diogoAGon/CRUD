@@ -10,15 +10,21 @@ Projeto desenvolvido após conclusão do curso JS na web: CRUD com JavaScript as
 - JavaScript
 ## Como rodar o projeto:
 
-- Clone o projeto, e vá na lista_cliente.html
+- Clone o projeto
 
-- Instale JSON:   npm install -g json-server
+- Clique com o segundo botão na pasta CRUD e abra o terminal integrado 
 
-- json-server --watch db.json
+**Rode os comandos:**
+-     npm install -g json-server
 
-- **Crie uma nova página no terminal**
 
-- Instale GBrowser:   npm install -g browser-sync
+-     json-server --watch db.json
 
-- browser-sync start --server --file . --host --port 5000 --startPath admin/telas/lista_cliente.html
+- Abra um novo terminal integrado a pasta CRUD
+
+**Rode os comandos**
+-     npm install -g browser-sync
+
+
+-     browser-sync start --server --file . --host --port 5000 --startPath admin/telas/lista_cliente.html
 
